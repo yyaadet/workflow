@@ -1,6 +1,6 @@
 Django Workflow Application v0.1 (alpha)
 
-(c) 2009 Nicholas H.Tollervey (http://ntoll.org/contact)
+(c) 2009 Nicholas H.Tollervey <http://ntoll.org/contact>
 
 See the file LICENSE.txt for the licensing terms and conditions.
 
