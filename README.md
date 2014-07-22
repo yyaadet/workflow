@@ -10,7 +10,7 @@ engine built for an HR application.
 
 Currently only the models have been "extracted". Commented doctests can be 
 found in tests.py. I've also created some templates for generating .dot files
-for processing by Graphviz. See: http://twitpic.com/7xiz7 for example output.
+for processing by Graphviz. See: <http://twitpic.com/7xiz7> for example output.
 See the urls.py for paths to use to display the .dot file and resulting .png
 image.
 
@@ -23,6 +23,8 @@ I realise the examples might be a tad contrived but I always find that thinking
 about tangible examples relating to data models is always helpful.
 
 The order that I describe the tables follows the code outline.
+
+Also, you can see <OpenFlowIntroduction.pdf>.
 
 ## Role
 
