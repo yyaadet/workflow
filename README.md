@@ -24,6 +24,8 @@ about tangible examples relating to data models is always helpful.
 
 The order that I describe the tables follows the code outline.
 
+## Role
+
 Role - defines what sort of users are associated with different aspects of the
 workflow. In the HR project these roles might include: 'HR Consultant', 'Hiring
 Manager', 'Interviewer' or 'Assessor'. In the issue tracker these might simply 
@@ -32,6 +34,8 @@ models have a many-to-many relationship with Role to indicate what sort of
 person has permission to view a state or use a transition. The Event model has a
 many-to-many relationship with Role to indicate who is participating in the
 event.
+
+## Workflow
 
 Workflow - names / describes a workflow. In the HR project workflows might be:
 'Generic Hiring Process', 'Executive Hiring Process' or 'Employee Appraisal'. In
@@ -46,6 +50,9 @@ mess that could ensue if a 'live' workflow were changed and states were deleted
 or orphaned. Furthermore, retired workflows could be "cloned" as the basis of
 new workflows in the 'definition' state. 
 
+
+## State
+
 State - represents a specific state that a thing can be in. In the HR project
 examples might be: 'Open for applications', 'Final shortlisting', 'Employee
 Interviews'. In the issue tracker we might have: 'Open', 'Rejected', 'Awaiting
@@ -54,6 +61,8 @@ Only one state can be marked as 'is_start_state' for each workflow but many can
 be marked as 'is_end_state' (indicating the workflow has been completed). Roles
 associated with each state indicate *who* has access to the thing when in this
 state.
+
+## Transition
 
 Transition - defines how a workflow can move between states. They *should* be
 given "active" names. For example, in the HR project transitions might be:
@@ -66,8 +75,13 @@ Put simply, a transition is an edge in a directed graph. Roles associated with
 each transition indicate *who* can use the transition to move the workflow to a
 new state.
 
+## EventType
+
 EventType - just defines the name of a type of event. Examples might be:
 meeting, assessment, interview, deployment test, feature freeze and so on.
+
+
+## Event
 
 Event - is a specification for something that is supposed to happen whilst in
 a state. In the HR project events might be: 'Meeting to approve job
@@ -77,6 +91,8 @@ employee interviews'. The issue tracker might have: 'Check for duplicate issue',
 participate in the event. I've also included an is_mandatory flag. An event can
 be associated with many EventTypes.
 
+## WorkflowActivity
+
 WorkflowActivity - is a core model to link "things" to workflows in a similar way
 to User objects having a profile. Vacancy and Issue instances in the HR and
 issue tracker examples should reference a WorkflowManager. The WorkflowManager
@@ -84,12 +100,17 @@ simply references an active Workflow and contains created_on and completed_on
 timestamps. The various methods associated with this model should be used move
 through the life of the workflow.
 
+
+## Participant
+
 Participant - links django.contrib.auth.models.User instances to a Role and 
 WorkflowManager. This way we know that user 'Joe Blogs' has the role 'Hiring 
 Manager' for the duration of the WorkflowManager that is using the 'Executive
 Hiring Process' workflow. We might also know that jtauber is Release Manager 
 during the lifetime of the WorkflowManager for Pinax1.0 that follows the Release 
 Lifecycle workflow.
+
+## WorkflowHistory
 
 WorkflowHistory - simply links up the WorkflowManager, State, Transition and
 Events to the State, Participant, a descriptive note and a timestamp enabling 
